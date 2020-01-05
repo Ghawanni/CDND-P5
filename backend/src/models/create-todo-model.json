@@ -8,7 +8,7 @@
     },
     "dueDate": {
       "type": "string"
-    },
+    }
   },
   "required": ["name", "dueDate"],
   "additionalProperties": true
