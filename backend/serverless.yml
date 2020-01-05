@@ -43,6 +43,10 @@ functions:
           method: get
           path: todos
           cors: true
+          request:
+            schema:
+              application/json: ${file(models/create-todo-model.json)}
+  
     iamRoleStatementsInherit: true
     iamRoleStatementsName: ${self:service.name}-get-todos-role-${self:provider.stage}
     iamRoleStatements:
@@ -92,6 +96,10 @@ functions:
           method: patch
           path: todos/{todoId}
           cors: true
+          request:
+            schema:
+              application/json: ${file(models/update-todo-model.json)}
+
     iamRoleStatementsInherit: true
     iamRoleStatementsName: ${self:service.name}-update-todo-role-${self:provider.stage}
     iamRoleStatements:
