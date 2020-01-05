@@ -50,10 +50,12 @@ export class EditTodo extends React.PureComponent<
         return
       }
 
+      // console.log("generating upload url for todo: ", this.props.match.params.todoId, "and token: ", this.props.auth.getIdToken())
       this.setUploadState(UploadState.FetchingPresignedUrl)
       const uploadUrl = await getUploadUrl(this.props.auth.getIdToken(), this.props.match.params.todoId)
 
       this.setUploadState(UploadState.UploadingFile)
+      console.log('uploading file into S3: ', uploadUrl)
       await uploadFile(uploadUrl, this.state.file)
 
       alert('File was uploaded!')

@@ -13,8 +13,8 @@ export async function getTodos(idToken: string): Promise<Todo[]> {
       'Authorization': `Bearer ${idToken}`
     },
   })
-  console.log('Todos:', response.data)
-  return response.data.items
+  console.log('Todos:', response.data.todos.Items);
+  return response.data.todos.Items
 }
 
 export async function createTodo(
@@ -27,7 +27,8 @@ export async function createTodo(
       'Authorization': `Bearer ${idToken}`
     }
   })
-  return response.data.item
+  console.log("Creating todo: ", response.data)
+  return response.data.newItem
 }
 
 export async function patchTodo(
@@ -53,6 +54,7 @@ export async function deleteTodo(
       'Authorization': `Bearer ${idToken}`
     }
   })
+  console.log("Deleting todo: ", todoId)
 }
 
 export async function getUploadUrl(
@@ -65,7 +67,8 @@ export async function getUploadUrl(
       'Authorization': `Bearer ${idToken}`
     }
   })
-  return response.data.uploadUrl
+  console.log("Getting upload url: ", response.data)
+  return response.data
 }
 
 export async function uploadFile(uploadUrl: string, file: Buffer): Promise<void> {
